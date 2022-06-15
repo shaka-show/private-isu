@@ -1,10 +1,11 @@
-version: '2.2'
+version: "2.2"
 services:
   nginx:
     image: nginx:1.22
     volumes:
       - ./etc/nginx/conf.d:/etc/nginx/conf.d
       - ./public:/public
+      - ./logs/nginx:/var/log/nginx
     ports:
       - "80:80"
     links:
@@ -41,6 +42,7 @@ services:
       - mysql:/var/lib/mysql
       - ./etc/my.cnf:/etc/my.cnf
       - ./sql:/docker-entrypoint-initdb.d
+      - ./logs/mysql:/var/log/mysql
     ports:
       - "3306:3306"
 
